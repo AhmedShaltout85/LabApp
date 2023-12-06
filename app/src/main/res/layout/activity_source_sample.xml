@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        tools:context=".views.SourceSample">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="100dp"
+            android:layout_weight="0"
+            android:src="@drawable/health_check" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:onClick="retriveSharedPrefLabCode"
+                android:text="@string/lab_code"
+                android:textAllCaps="false"
+
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/labCodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:inputType="number"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/sample_code"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/sampleCodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:inputType="number"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/getLabNameBtn"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/lab_name"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/labNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/x_lat"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/sampleXTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/y_long"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/sampleYTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+
+                />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/saveSrcDataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_button_blue"
+            android:text="@string/save_sample_details"
+            android:textColor="@android:color/white"
+            android:textSize="27sp"
+            android:textAllCaps="false"
+
+            />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        tools:context=".views.AddNewSample">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="100dp"
+            android:layout_weight="0"
+            android:src="@drawable/health_check" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/sample_qr"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/qrScannerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/x_lat"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/locationLatitude"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/y_long"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/locationLongitude"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/qr_notes"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Spinner
+                android:id="@+id/qrSpinnerNotes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/saveReferenceData"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="2"
+                android:background="@drawable/rounded_button_blue"
+                android:text="@string/save_sample_details"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/displayTrueLocation"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="2"
+                android:background="@drawable/rounded_button_blue"
+                android:text="@string/display_true_location"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/displayInGIS"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="2"
+                android:background="@drawable/rounded_button_blue"
+                android:text="@string/display_gis"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

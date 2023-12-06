@@ -1,0 +1,338 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        tools:context=".views.AddBrokenPointScreen">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="0"
+            android:src="@drawable/maintenance" />
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:layout_marginBottom="3dp"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <Button-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/ic_launcher_background"-->
+        <!--                android:text="@string/lab_code"-->
+        <!--                android:textSize="7sp"-->
+        <!--                android:textColor="@android:color/white" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/labCodeBrokenTextView"-->
+        <!--                android:layout_width="95dp"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_margin="5dp"-->
+        <!--                android:background="@drawable/rounded_button_txt"-->
+        <!--                android:textColor="@color/text"-->
+        <!--                android:textSize="10sp"-->
+
+
+        <!--                />-->
+
+        <!--            <Button-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/ic_launcher_background"-->
+        <!--                android:text="@string/sample_code"-->
+        <!--                android:textSize="7sp"-->
+        <!--                android:textColor="@android:color/white" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/sampleCodeBrokenTextView"-->
+        <!--                android:layout_width="95dp"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_margin="5dp"-->
+        <!--                android:background="@drawable/rounded_button_txt"-->
+        <!--                android:textColor="@color/text"-->
+        <!--                android:textSize="10sp"-->
+
+
+        <!--                />-->
+        <!--        </LinearLayout>-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:layout_marginBottom="3dp"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <Button-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/ic_launcher_background"-->
+        <!--                android:text="@string/lab_name"-->
+        <!--                android:textSize="10sp"-->
+
+        <!--                android:textColor="@android:color/white" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/labNameBrokenTextView"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_margin="5dp"-->
+        <!--                android:background="@drawable/rounded_button_txt"-->
+        <!--                android:textColor="@color/text"-->
+        <!--                android:textSize="10sp"-->
+
+        <!--                />-->
+        <!--        </LinearLayout>-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:layout_marginBottom="3dp"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <Button-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/ic_launcher_background"-->
+        <!--                android:text="@string/sector_name"-->
+        <!--                android:textSize="10sp"-->
+
+        <!--                android:textColor="@android:color/white" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/sectorNameBrokenTextView"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_margin="5dp"-->
+        <!--                android:background="@drawable/rounded_button_txt"-->
+        <!--                android:textColor="@color/text"-->
+        <!--                android:textSize="10sp"-->
+
+        <!--                />-->
+        <!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/batch_name"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/batchNameBrokenTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/sample_name"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/sampleNameBrokenEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button_txt"
+                android:hint="@string/broken_sample_name_hint"
+                android:inputType="text"
+                android:textColor="@color/text"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/sample_desc"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/descBrokenEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button_txt"
+                android:hint="@string/desc_hint"
+                android:inputType="text"
+                android:textColor="@color/text"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/sample_kind"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Spinner
+                android:id="@+id/sampleKindSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/x_lat"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/xBrokenTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/y_long"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/yBrokenTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+
+
+                />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/addNewBrokenPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_button_blue"
+            android:onClick="addNewBrokenPoint"
+            android:text="@string/save_sample_details"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="27sp"
+
+
+            />
+
+    </LinearLayout>
+</ScrollView>
+

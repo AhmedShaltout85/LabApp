@@ -1,0 +1,61 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">@color/text</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item> // Bottom sheet
+
+    </style>
+    <!--    <style name="RippleStyleGrey">-->
+    <!--        <item name="mrl_rippleOverlay">true</item>-->
+    <!--        <item name="mrl_rippleColor">#80808080</item>-->
+    <!--        <item name="mrl_rippleAlpha">0.2</item>-->
+    <!--    </style>-->
+
+    <!--        custom loader style-->
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/text</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+// Bottom Sheet Rounded corners
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+<!--    SnakeBar Rounded Corners-->
+
+<!--    <style name="ButtonBorder" parent="Widget.AppCompat.Button.Colored"/>-->
+
+<!--    <style name="ButtonBorder.Accent">-->
+<!--        <item name="android:background">@drawable/bg_btn_outline</item>-->
+<!--        <item name="android:textColor">@color/colorAccent</item>-->
+<!--        <item name="android:textAllCaps">false</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--        <item name="android:singleLine">true</item>-->
+<!--    </style>-->
+
+</resources>

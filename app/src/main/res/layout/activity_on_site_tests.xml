@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <LinearLayout
+
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        tools:context=".views.OnSiteTests">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="100dp"
+            android:layout_weight="0"
+            android:src="@drawable/on_site_test" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/sample_qr"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/onSiteQrScannerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/on_site_test_type"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Spinner
+                android:id="@+id/onSiteTestSpinnerTestType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button_txt"
+                android:textColor="@color/text"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginLeft="10dp"-->
+        <!--        android:layout_marginTop="20dp"-->
+        <!--        android:layout_marginRight="10dp"-->
+        <!--        android:layout_marginBottom="10dp"-->
+        <!--        android:orientation="horizontal">-->
+
+        <!--        <Button-->
+        <!--            android:layout_width="115dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="@color/ic_launcher_background"-->
+        <!--            android:text="@string/test_sample_kind"-->
+        <!--            android:textColor="@android:color/white"-->
+        <!--            android:textAllCaps="false"-->
+        <!--            android:textSize="10sp" />-->
+
+        <!--        <Spinner-->
+        <!--            android:id="@+id/onSiteTestSpinnerTestSampleKind"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@drawable/rounded_button_txt"-->
+        <!--            android:textColor="@color/text"-->
+        <!--            android:textSize="15sp" />-->
+        <!--    </LinearLayout>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:background="@color/ic_launcher_background"
+                android:text="@string/test_value"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/onSiteTestValueEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp"
+                android:background="@drawable/rounded_button_txt"
+                android:hint="@string/set_test_value_hint"
+                android:inputType="numberDecimal"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp"
+
+
+                />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/saveOnSiteTestData"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_button_blue"
+            android:text="@string/save_sample_details"
+            android:textColor="@android:color/white"
+            android:textSize="27sp"
+            android:textAllCaps="false"
+
+
+            />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">AlexWaterLabsApp</string>
+    <string name="company_name">شركة مياه الشرب بالأسكندرية</string>
+    <string name="sector_com_name">قطاع التكنولوجيا والخدمات الرقمية</string>
+    <string name="depart_name">إدارة البرمجيات وصيانتها</string>
+    <string name="splash_title">تطبيق المعامل v1</string>
+    <string name="login_user">Login</string>
+    <string name="enter_your_name">Enter Username</string>
+    <string name="enter_your_password">Enter Password</string>
+    <string name="open_qr_reader">إضافة عينة يومية </string>
+    <string name="save_sample_details">حفظ العينه</string>
+    <string name="save_src_sample">نقطة سحب جديدة</string>
+    <string name="remember_me">Remember me</string>
+    <string name="x_lat">sampleX</string>
+    <string name="y_long">sampleY</string>
+    <string name="sample_qr">SampleQR</string>
+    <string name="lab_code">labCode</string>
+    <string name="sample_code">sampleCode</string>
+    <string name="lab_name">labName</string>
+    <string name="sample_name">sampleName</string>
+    <string name="sample_desc">description</string>
+    <string name="sector_name">sectorName</string>
+    <string name="batch_name">batchName</string>
+    <string name="sample_kind">sampleKind</string>
+    <string name="qr_notes">Notes</string>
+    <string name="valid_note">Valid</string>
+    <string name="type_valid_invalid">Type Valid | Invalid</string>
+    <string name="add_broken_point">إضافة كسر</string>
+    <string name="desc_hint">أضف وصف للكسر</string>
+    <string name="broken_sample_name_hint">اضف إسم الكسر</string>
+    <string name="on_site_test">On site Test</string>
+    <string name="test_value">On Site Test Value</string>
+    <string name="test_sample_kind">Test Sample kind</string>
+    <string name="set_test_value_hint">أدخل قيمة داخل النطاق المسموح به</string>
+    <string name="on_site_test_type">Select Test Type</string>
+    <string name="display_true_location">مكان العينه على الخريطة</string>
+    <string name="display_gis">تحميل المسار</string>
+    <string name="add_ip_address">add Ip address</string>
+    <string name="please_enter_ip_address">Please Enter IP Address</string>
+
+
+    <string-array name="notes">
+        <item>Valid</item>
+        <item>Invalid</item>
+    </string-array>
+
+    <string-array name="kinds">
+        <item>مياه نقية شبكة</item>
+        <item>مياة نقية محطة</item>
+    </string-array>
+
+    <string-array name="testSampleKind">
+        <item>مياه نقية محطة</item>
+        <item>مياه نقية شبكة</item>
+        <item>مياه عكره محطة</item>
+        <item>عينه طينه</item>
+        <item>عينه مروقه</item>
+        <item>مياه مرشحه</item>
+    </string-array>
+
+
+</resources>
