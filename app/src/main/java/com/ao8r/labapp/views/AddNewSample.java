@@ -465,7 +465,16 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 try {
+//                Check internet Connectivity
 
+                    if (InternetConnection.checkConnection(getApplicationContext())) {
+                        // Its Available...
+                        CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+                    } else {
+                        // Not Available...
+                        CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+
+                    }
                     varsParams();
                     GetOriginXandY.getSampleXAndY(getApplicationContext(),
                             ReferenceData.labCodeLt, ReferenceData.sampleCodeLt);
