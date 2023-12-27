@@ -13,10 +13,15 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="fdc68df0-0e4a-419f-947a-8605a0c46ce0">
-      <console name="connect_to_labs_db" type="STANDARD" schema="dbo" session="Main"><![CDATA[select * 
-from location_details 
-where qr_lab_code = 1
-and qr_sample_code = 33;]]></console>
+      <console name="connect_to_labs_db" type="STANDARD" schema="dbo" session="Main"><![CDATA[SELECT * 
+FROM lab_samples 
+WHERE lab_code = 15 
+AND sample_code = 7;
+--
+SELECT sample_name, sample_x, sample_y 
+FROM lab_samples 
+WHERE lab_code = 15 
+AND batche_name = 'مراحل تنقية مياه الزهور';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -24,6 +29,10 @@ and qr_sample_code = 33;]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="fdc68df0-0e4a-419f-947a-8605a0c46ce0" dataset="dbo.labs_daily_tests" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="fdc68df0-0e4a-419f-947a-8605a0c46ce0" dataset="dbo.location_details" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

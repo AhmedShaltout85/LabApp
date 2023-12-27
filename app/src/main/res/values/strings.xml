@@ -35,8 +35,11 @@
     <string name="on_site_test_type">Select Test Type</string>
     <string name="display_true_location">مكان العينه على الخريطة</string>
     <string name="display_gis">تحميل المسار</string>
+    <string name="display_full_path_in_map">تحميل المسار على الخريطة</string>
     <string name="add_ip_address">add Ip address</string>
     <string name="please_enter_ip_address">Please Enter IP Address</string>
+    <string name="map_api_key">AIzaSyD8pcx661wef6r3hyEJnfqoCVhYhFJFs9k</string>
+<!--        <string name="map_api_key">AIzaSyDkbh3lIVsOvb40B6QnhlYR6IR4EKVLYYk</string>-->
 
 
     <string-array name="notes">
@@ -57,6 +60,9 @@
         <item>عينه مروقه</item>
         <item>مياه مرشحه</item>
     </string-array>
+    <string name="title_activity_maps_markers">MapsMarkers</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
 
 
 </resources>

@@ -10,7 +10,6 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,7 +40,7 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
     String qrScanner, locationLong, locationLat, note;
     TextView qrScanning, locationLatitude, locationLongitude;
     Spinner qrSpinnerNotes;
-    Button saveRefData, displayTrueLocationInMap, displayInGIS;
+    Button saveRefData, displayTrueLocationInMap, displayInGIS, displayGMapPathInMap;
     //    MenuScreen menuScreen = new MenuScreen();
 //    Location location = new Location(LocationManager.GPS_PROVIDER);
     GetLocation getLocation = new GetLocation(this);
@@ -66,6 +65,7 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
         saveRefData = findViewById(R.id.saveReferenceData);
         displayTrueLocationInMap = findViewById(R.id.displayTrueLocation);
         displayInGIS = findViewById(R.id.displayInGIS);
+        displayGMapPathInMap = findViewById(R.id.displayGMapPath);
 
         // Get data from qr Scanner and Location
         qrScanner = getIntent().getStringExtra("scanningCode");
@@ -83,9 +83,16 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
         locationLatitude.setText(locationLat);
         locationLongitude.setText(locationLong);
 
+        //Assign location data to static vars
+        ReferenceData.xLatitude = locationLatitude.getText().toString();
+        ReferenceData.yLongitude = locationLongitude.getText().toString();
+
+
 //      Assign Spinner
 
-        ArrayAdapter<String> spinnerNote = new ArrayAdapter<String>(AddNewSample.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.notes));
+        ArrayAdapter<String> spinnerNote = new ArrayAdapter<String>(AddNewSample.this,
+                android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.notes));
         spinnerNote.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         qrSpinnerNotes.setAdapter(spinnerNote);
         qrSpinnerNotes.setOnItemSelectedListener(this);
@@ -307,6 +314,8 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
             }
 
         });
+
+//        TODO:// NAV TO ORIGIN LOCATION IN MAP
 //        nav to original x, y in map
 
         displayTrueLocationInMap.setOnClickListener(new View.OnClickListener() {
@@ -325,23 +334,30 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
 //                    String sampleXComp = splitQrLt[2];
 //                    String sampleYComp = splitQrLt[3];
                     varsParams();
-                    GetOriginXandY.getSampleXAndY(getApplicationContext(),
-                            ReferenceData.labCodeLt, ReferenceData.sampleCodeLt);
-                    String uri = String.format(
-                            Locale.ENGLISH,
-                            "http://maps.google.com/maps?daddr=%f,%f (%s)",
-                            Double.parseDouble(ReferenceData.originX),
-                            Double.parseDouble(ReferenceData.originY),
-                            ReferenceData.originSampleName
+                    if (Double.parseDouble(ReferenceData.originX) == 1.1111111 ||
+                            Double.parseDouble(ReferenceData.originY) == 1.1111111 ||
+                            Double.parseDouble(ReferenceData.originX) == 1.111111044883728 ||
+                            Double.parseDouble(ReferenceData.originY) == 1.111111044883728) {
+                        CustomToast.customToast(getApplicationContext(), "عفو لم يتم إدراج إحداثيات هذه النقطة على المسار");
+
+                    } else {
+                        GetOriginXandY.getSampleXAndY(getApplicationContext(),
+                                ReferenceData.labCodeLt, ReferenceData.sampleCodeLt);
+                        String uri = String.format(
+                                Locale.ENGLISH,
+                                "http://maps.google.com/maps?daddr=%f,%f (%s)",
+                                Double.parseDouble(ReferenceData.originX),
+                                Double.parseDouble(ReferenceData.originY),
+                                ReferenceData.originSampleName
 //                            31.197056, 29.909812, "مكتب البرمجيات كوم الدكه"
-                    );
+                        );
 
 
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                    intent.setPackage("com.google.android.apps.maps");
-                    startActivity(intent);
-                    CustomToast.customToast(getApplicationContext(), "جارى التحويل لل Google map");
-
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        intent.setPackage("com.google.android.apps.maps");
+                        startActivity(intent);
+                        CustomToast.customToast(getApplicationContext(), "جارى التحويل لل Google map");
+                    }
 
                 } catch (Exception e) {
                     e.getStackTrace();
@@ -399,6 +415,19 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
 
                     GetOriginXandY.getSampleXAndY(getApplicationContext(),
                             ReferenceData.labCodeLt, ReferenceData.sampleCodeLt);
+
+                    //TODO: check if location point is added in map or not
+                    if (Double.parseDouble(ReferenceData.originX) == 1.1111111 ||
+                            Double.parseDouble(ReferenceData.originY) == 1.1111111 ||
+                            Double.parseDouble(ReferenceData.originX) == 1.111111044883728 ||
+                            Double.parseDouble(ReferenceData.originY) == 1.111111044883728) {
+
+                        CustomToast.customToast(getApplicationContext(), "عفو لم يتم إدراج هذة النقطة على المسار");
+                    } else {
+                        System.out.println("Enter to  display-GIS-Map");
+                        CustomToast.customToast(getApplicationContext(), "جارى تحميل المسار على GIS");
+
+                    }
                     // 2- debug sampleName
                     System.out.println("2- debug sampleName  : >>" + ReferenceData.originBatchName);
 
@@ -425,6 +454,49 @@ public class AddNewSample extends AppCompatActivity implements AdapterView.OnIte
                     e.getStackTrace();
                 }
 
+            }
+        });
+
+
+//        display in displayGMapPathInMap
+//        TODO://display IN displayGMapPathInMap//
+        displayGMapPathInMap.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    varsParams();
+                    GetOriginXandY.getSampleXAndY(getApplicationContext(),
+                            ReferenceData.labCodeLt, ReferenceData.sampleCodeLt);
+                    System.out.println("addNewSample--current x: " + ReferenceData.xLatitude);
+                    System.out.println("addNewSample--current y: " + ReferenceData.yLongitude);
+                    System.out.println("location-from-intent " + locationLat + "," + locationLong);
+                    System.out.println("addNewSample--origin x: " + ReferenceData.originX);
+                    System.out.println("addNewSample--origin y: " + ReferenceData.originY);
+                    System.out.println("addNewSample--sampleName: " + ReferenceData.originSampleName);
+                    System.out.println("addNewSample--bachName: " + ReferenceData.originBatchName);
+
+//                    if(     Double.parseDouble(ReferenceData.originX) == 1.1111111 ||
+//                            Double.parseDouble(ReferenceData.originY) == 1.1111111 ||
+//                            Double.parseDouble(ReferenceData.originX) == 1.111111044883728 ||
+//                            Double.parseDouble(ReferenceData.originY) == 1.111111044883728){
+//
+//                        CustomToast.customToast(getApplicationContext(),"عفو لم يتم إدراج هذة النقطة على المسار");
+//                    }else {
+//                        System.out.println("Enter to  displayGMapPathInMap");
+//                        CustomToast.customToast(getApplicationContext(), "جارى تحميل المسار على الخريطة");
+
+                    Intent intent = new Intent(getApplicationContext(), MapsActivity2.class);
+                    startActivity(intent);
+//                }
+
+                } catch (Exception exception) {
+                    exception.getStackTrace();
+                    CustomToast.customToast(getApplicationContext(), "عفو البيانات خاطئة");
+                    Log.d("TAG--displayGMapPathInMap", "onClick: displayGMapPathInMap");
+                    System.out.println("displayGMapPathInMap");
+                }
             }
         });
 

@@ -5,10 +5,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.Camera" />
     <uses-feature android:name="android.hardware.Camera.AutoFocusCallback" />
@@ -17,21 +19,45 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- for test location and internet connectivity -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<!--    <uses-feature android:name="android.hardware.location.gps"/>&lt;!&ndash; update 24-12-2023   &ndash;&gt;-->
+
 
     <application
-        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.OnSiteTests"/>
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key" />
+
+        <activity
+            android:name=".views.MapsActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_maps2" />
+        <activity android:name=".views.OnSiteTests" />
         <activity android:name=".views.AddBrokenPointScreen" />
         <activity android:name=".views.SourceSample" />
-        <activity android:name=".views.AddNewSample">
+        <activity
+            android:name=".views.AddNewSample"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,21 +69,27 @@
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".views.MenuScreen">
+        <activity
+            android:name=".views.MenuScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.SplashScreen">
+        <activity
+            android:name=".views.SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.LoginScreen"
+        <activity
+            android:name=".views.LoginScreen"
+            android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -43,10 +43,10 @@ public class GetOriginXandY {
                     ReferenceData.originY = resultSet.getString("sample_y");
                     ReferenceData.originSampleName = resultSet.getString("sample_name");
                     ReferenceData.originBatchName = resultSet.getString("batche_name");
-                    System.out.println(resultSet.getString("sample_x"));
-                    System.out.println(resultSet.getString("sample_y"));
-                    System.out.println(resultSet.getString("sample_name"));
-                    System.out.println(resultSet.getString("batche_name"));
+                    System.out.println("API "+resultSet.getString("sample_x"));
+                    System.out.println("API "+resultSet.getString("sample_y"));
+                    System.out.println("API "+resultSet.getString("sample_name"));
+                    System.out.println("API "+resultSet.getString("batche_name"));
 
 
 
