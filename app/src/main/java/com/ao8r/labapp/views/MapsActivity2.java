@@ -2,7 +2,6 @@ package com.ao8r.labapp.views;
 
 import androidx.fragment.app.FragmentActivity;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -19,12 +18,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
+
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback {
+
+
 
     private GoogleMap mMap;
     private ActivityMaps2Binding binding;
