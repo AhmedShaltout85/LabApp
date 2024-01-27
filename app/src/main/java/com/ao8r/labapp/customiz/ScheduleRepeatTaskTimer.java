@@ -1,17 +1,20 @@
 package com.ao8r.labapp.customiz;
 
-import static androidx.constraintlayout.motion.widget.Debug.getLocation;
+
 
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
+import com.ao8r.labapp.views.MenuScreen;
 
 public class ScheduleRepeatTaskTimer {
-    public static void repeatTask(String locX, String locY, Context context){
+    public static void repeatTask(String locX, String locY, Context tContext){
+        MenuScreen menuScreen = new MenuScreen();
         Handler handler = new Handler();
         // Define the code block to be executed
 
@@ -22,11 +25,11 @@ public class ScheduleRepeatTaskTimer {
                 Log.d("Handlers", "Called on main thread");
                 // Repeat this the same runnable code block again another 2 seconds
                 // 'this' is referencing the Runnable object
-                getLocation();
+                menuScreen.getLocation();
                 ReferenceData.sampleBrokenX = locX;
                 ReferenceData.sampleBrokenY = locY;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(context);
+                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(tContext);
                 }
                 handler.postDelayed(this, 60000);
                 // execute after 1 minute

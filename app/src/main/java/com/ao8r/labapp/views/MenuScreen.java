@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -25,7 +26,7 @@ import android.widget.Button;
 
 
 import com.ao8r.labapp.R;
-import com.ao8r.labapp.customiz.CustomAlertDialogWithEditText;
+
 import com.ao8r.labapp.customiz.CustomLoader;
 import com.ao8r.labapp.customiz.CustomToast;
 import com.ao8r.labapp.customiz.ReadWriteFileFromInternalMem;
@@ -36,13 +37,12 @@ import com.ao8r.labapp.R.layout;
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.GetLabAndSectorNameForBrokenPoint;
 import com.ao8r.labapp.repository.GetMaxSampleCodeForBrokenPoint;
-import com.ao8r.labapp.repository.GetSampleLabNameFromLabSamples;
+
 import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 
 public class MenuScreen extends AppCompatActivity implements OnClickListener, LocationListener {
@@ -50,6 +50,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
     private Button addNewSample, newSrcSample, addBrokenPoint, addOnSiteTests;
     private String locationLong, locationLat;
     private IntentIntegrator qrScanner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //        }else {
 //            CustomToast.customToast(getApplicationContext(),"عفو خطأ فى الحصول على LAB_CODE");
 //        }
+
 
 //      Call find Location fun
         getLocation();
@@ -175,7 +177,9 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                     System.out.println("BREAK-LOCATION-STARTED");
                     ReferenceData.sampleBrokenX = locationLat;
                     ReferenceData.sampleBrokenY = locationLong;
-                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+                    System.out.println(locationLat);
+                    System.out.println(locationLong);
+//                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
 
                     //loop for track location
 //                    Timer timer = new Timer();
@@ -210,14 +214,19 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //                    };
 //                    // Start the initial runnable task by posting through the handler
 //                    handler.post(runnableCode);
-
-                    ScheduleRepeatTaskTimer.repeatTask(locationLat, locationLong, getApplicationContext());
+//                    try {
+//
+//                        ScheduleRepeatTaskTimer.repeatTask(locationLat, locationLong, view.getContext());
+//                    }catch (Exception exception){
+//                        CustomToast.customToast(getApplicationContext(),"فضلا تحقق من أتصالك بالأنترنت");
+//                    }
 
                     //TODO: // disable for test periodic locations track
-//                            Intent intent = new Intent(view.getContext(), AddBrokenPointScreen.class);
+//                            Intent intent = new Intent(view.getContext(), TrackBreakLocInMapsActivity.class);
+                            Intent intent = new Intent(this, TrackBreakLocInMapsActivity.class);
 //                            intent.putExtra("locationLatVal", locationLat);
 //                            intent.putExtra("locationLongVal", locationLong);
-//                            startActivity(intent);
+                            startActivity(intent);
 
                     //call Track repeat task timer class
 
