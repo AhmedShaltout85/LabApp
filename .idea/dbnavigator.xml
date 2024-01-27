@@ -8,7 +8,7 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
+    <show-object-properties value="false" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
@@ -21,7 +21,9 @@ AND sample_code = 7;
 SELECT sample_name, sample_x, sample_y 
 FROM lab_samples 
 WHERE lab_code = 15 
-AND batche_name = 'مراحل تنقية مياه الزهور';]]></console>
+AND batche_name = 'مراحل تنقية مياه الزهور';
+
+select * from "Track_break_locations";]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -32,6 +34,7 @@ AND batche_name = 'مراحل تنقية مياه الزهور';]]></console>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="fdc68df0-0e4a-419f-947a-8605a0c46ce0" dataset="dbo.labs_daily_tests" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="fdc68df0-0e4a-419f-947a-8605a0c46ce0" dataset="dbo.Track_break_locations" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="fdc68df0-0e4a-419f-947a-8605a0c46ce0" dataset="dbo.location_details" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

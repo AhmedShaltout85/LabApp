@@ -45,6 +45,8 @@ public class GetLocation {
             locationRequest = LocationRequest.create();
             locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
             locationRequest.setInterval(5000); // Update interval in milliseconds
+            //for 5 minutes 300000 (5 * 60 * 1000)
+            //for 1 minute 60000(1 * 60 * 1000)
 
             locationCallback = new LocationCallback() {
                 @Override

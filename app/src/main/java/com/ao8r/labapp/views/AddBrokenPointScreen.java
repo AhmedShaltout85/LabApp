@@ -22,9 +22,7 @@ import com.ao8r.labapp.repository.InsertBrokenPointInDailyTB;
 import com.ao8r.labapp.repository.InsertBrokenPointInSrcTB;
 import com.ao8r.labapp.services.InternetConnection;
 
-public class AddBrokenPointScreen extends AppCompatActivity
-        implements AdapterView.OnItemSelectedListener
-{
+public class AddBrokenPointScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String brokenWaterTypeSpinner, tempBatchName = "كسورات";
     Button saveBrokenPoint;
     Spinner selectWaterTypeFromSpinner;

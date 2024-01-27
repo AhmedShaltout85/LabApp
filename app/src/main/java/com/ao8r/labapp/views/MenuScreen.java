@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -28,14 +29,20 @@ import com.ao8r.labapp.customiz.CustomAlertDialogWithEditText;
 import com.ao8r.labapp.customiz.CustomLoader;
 import com.ao8r.labapp.customiz.CustomToast;
 import com.ao8r.labapp.customiz.ReadWriteFileFromInternalMem;
+import com.ao8r.labapp.customiz.ScheduleRepeatTaskTimer;
 import com.ao8r.labapp.models.CaptureAct;
 import com.ao8r.labapp.R.id;
 import com.ao8r.labapp.R.layout;
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.GetLabAndSectorNameForBrokenPoint;
 import com.ao8r.labapp.repository.GetMaxSampleCodeForBrokenPoint;
+import com.ao8r.labapp.repository.GetSampleLabNameFromLabSamples;
+import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MenuScreen extends AppCompatActivity implements OnClickListener, LocationListener {
@@ -52,6 +59,14 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //        call get LabCode modify 20/09/2022
 
 //        CustomAlertDialogWithEditText.getMissedLabCode(getApplicationContext(),"فضلا أدخل labCode");
+
+//        //TODO: GET all LAB data By LAB_CODE
+//        if(!ReadWriteFileFromInternalMem.getLabCodeFromFile().isEmpty()) {
+//            GetSampleLabNameFromLabSamples.getSampleLabNameFromLabSamples(getApplicationContext());
+//        }else {
+//            CustomToast.customToast(getApplicationContext(),"عفو خطأ فى الحصول على LAB_CODE");
+//        }
+
 //      Call find Location fun
         getLocation();
         addNewSample = findViewById(R.id.addNewSampleButton);
@@ -87,12 +102,12 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //        getLocation();
 //    }
 
-//    Go Back to LoginPage
+    //    Go Back to LoginPage
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(MenuScreen.this, LoginScreen.class);
-         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
 
@@ -152,34 +167,80 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //                    }else{
                     GetMaxSampleCodeForBrokenPoint.getMaxSampleCode(getApplicationContext());
                     GetLabAndSectorNameForBrokenPoint.getLabAndSectorNameForBrokenPoint(getApplicationContext());
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.getStackTrace();
                 }
 
-                        if (locationLat != null && locationLong != null) {
-                            Intent intent = new Intent(view.getContext(), AddBrokenPointScreen.class);
-                            intent.putExtra("locationLatVal", locationLat);
-                            intent.putExtra("locationLongVal", locationLong);
-                            startActivity(intent);
-                        } else {
+                if (locationLat != null && locationLong != null) {
+                    System.out.println("BREAK-LOCATION-STARTED");
+                    ReferenceData.sampleBrokenX = locationLat;
+                    ReferenceData.sampleBrokenY = locationLong;
+                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+
+                    //loop for track location
+//                    Timer timer = new Timer();
+//
+//                    timer.schedule(new TimerTask() {
+//                        public void run() {
+//                            //Called in a secondary thread.
+//                            //GUI update not allowed.
+//                            getLocation();
+//                            ReferenceData.sampleBrokenX = locationLat;
+//                            ReferenceData.sampleBrokenY = locationLong;
+//                            InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+//                        }
+//                    }, 0,60000);
+
+//                    Handler handler = new Handler();
+//                    // Define the code block to be executed
+//
+//                    Runnable runnableCode = new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            // Do something here on the main thread
+//                            Log.d("Handlers", "Called on main thread");
+//                            // Repeat this the same runnable code block again another 2 seconds
+//                            // 'this' is referencing the Runnable object
+//                            getLocation();
+//                            ReferenceData.sampleBrokenX = locationLat;
+//                            ReferenceData.sampleBrokenY = locationLong;
+//                            InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+//                            handler.postDelayed(this, 60000);
+//                        }
+//                    };
+//                    // Start the initial runnable task by posting through the handler
+//                    handler.post(runnableCode);
+
+                    ScheduleRepeatTaskTimer.repeatTask(locationLat, locationLong, getApplicationContext());
+
+                    //TODO: // disable for test periodic locations track
+//                            Intent intent = new Intent(view.getContext(), AddBrokenPointScreen.class);
+//                            intent.putExtra("locationLatVal", locationLat);
+//                            intent.putExtra("locationLongVal", locationLong);
+//                            startActivity(intent);
+
+                    //call Track repeat task timer class
+
+                    System.out.println("BREAK-LOCATION-TESTED");
+                } else {
 //            Call Loader
-                            CustomLoader.customLoader(this, ".. جارى تحديد الموقع ..");
-                        }
+                    CustomLoader.customLoader(this, ".. جارى تحديد الموقع ..");
+                }
 //                    }
 
 //                }
                 break;
 
-            case  id.addOnSiteTestButton:
+            case id.addOnSiteTestButton:
 
 
-                        if (ReferenceData.userControl == 3) {
-                            scanData();
+                if (ReferenceData.userControl == 3) {
+                    scanData();
 
-                        } else {
-                            CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لهذا المحتوى");
+                } else {
+                    CustomToast.customToast(getApplicationContext(), "عفو ليس لديك صلاحية لهذا المحتوى");
 
-                        }
+                }
 
 
                 break;
@@ -234,7 +295,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //                        //                    modify in 29/8/2022
 
 //                        //ON SITE TEST BUTTON
-                        else if(ReferenceData.userControl == 3){
+                        else if (ReferenceData.userControl == 3) {
                             Intent intent = new Intent(this, OnSiteTests.class);
                             intent.putExtra("locationLatVal", locationLat);
                             intent.putExtra("locationLongVal", locationLong);

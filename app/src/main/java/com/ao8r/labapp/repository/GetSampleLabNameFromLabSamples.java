@@ -42,7 +42,7 @@ public class GetSampleLabNameFromLabSamples {
 
 
                     ReferenceData.onSiteTestSampleLabName = resultSet.getString("lab_name");
-//                    ReferenceData.onSiteTestSectorName = resultSet.getString("sector_name");
+//                    ReferenceData.SECTOR_NAME = resultSet.getString("sector_name");
 //                    ReferenceData.onSiteTestBatchName = resultSet.getString("batche_name");
 //                    ReferenceData.onSiteTestSampleName = resultSet.getString("sample_name");
 //                    ReferenceData.onSiteTestSampleKind = resultSet.getString("sample_kind");

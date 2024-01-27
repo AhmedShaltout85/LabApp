@@ -39,7 +39,7 @@
     <string name="add_ip_address">add Ip address</string>
     <string name="please_enter_ip_address">Please Enter IP Address</string>
     <string name="map_api_key">AIzaSyD8pcx661wef6r3hyEJnfqoCVhYhFJFs9k</string>
-<!--        <string name="map_api_key">AIzaSyDkbh3lIVsOvb40B6QnhlYR6IR4EKVLYYk</string>-->
+    <!--        <string name="map_api_key">AIzaSyDkbh3lIVsOvb40B6QnhlYR6IR4EKVLYYk</string>-->
 
 
     <string-array name="notes">
@@ -63,6 +63,7 @@
     <string name="title_activity_maps_markers">MapsMarkers</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_maps2">MapsActivity2</string>
+    <string name="title_activity_track_break_loc_in_maps">TrackBreakLocInMapsActivity</string>
 
 
 </resources>

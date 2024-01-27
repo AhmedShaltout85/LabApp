@@ -71,6 +71,9 @@ public class ReferenceData {
     public static String testValueOutOfRange;
     public static String outOfRangeText;
 
+//    //Global LAB DATA
+//    public static String LAB_NAME = onSiteTestSampleLabName;
+//    public static String SECTOR_NAME;
 
 
     // Compared X and Y
