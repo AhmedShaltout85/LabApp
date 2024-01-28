@@ -179,7 +179,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                     ReferenceData.sampleBrokenY = locationLong;
                     System.out.println(locationLat);
                     System.out.println(locationLong);
-//                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
 
                     //loop for track location
 //                    Timer timer = new Timer();
