@@ -2,10 +2,13 @@ package com.ao8r.labapp.views;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.ao8r.labapp.R;
 import com.ao8r.labapp.customiz.CustomToast;
@@ -33,6 +36,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
     private GoogleMap mMap;
     private ActivityTrackBreakLocInMapsBinding binding;
     private ArrayList<BreakPointsModel> breakPointsModelArrayList;
+    Button navToBrokenScreenBtn;
 
 
     @Override
@@ -47,7 +51,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
+        navToBrokenScreenBtn =findViewById(R.id.navToBrokenScreen);
 
         //         in below line we are initializing our array list.
         breakPointsModelArrayList = new ArrayList<>();
@@ -66,9 +70,30 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
             CustomToast.customToast(getApplicationContext(), "عفو هذا المسار لم يتم ادراجه");
         }
 
+        navToBrokenScreenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!ReferenceData.sampleBrokenX.isEmpty() && !ReferenceData.sampleBrokenY.isEmpty()){
+                    Intent intent = new Intent(getApplicationContext(), AddBrokenPointScreen.class);
+                    startActivity(intent);
+                }else{
+                    CustomToast.customToast(getApplicationContext(),"تحقق من الانترنت");
+                }
+            }
+        });
 
     }
 
+    //    Go Back to MenuScreen
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(TrackBreakLocInMapsActivity.this, MenuScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

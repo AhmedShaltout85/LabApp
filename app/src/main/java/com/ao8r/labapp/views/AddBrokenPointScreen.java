@@ -63,8 +63,10 @@ public class AddBrokenPointScreen extends AppCompatActivity implements AdapterVi
 
 //        Assign data to Text field
 //
-        brokenXTV.setText(tempBrokenX);
-        brokenYTV.setText(tempBrokenY);
+        brokenXTV.setText(ReferenceData.sampleBrokenX);
+        brokenYTV.setText(ReferenceData.sampleBrokenY);
+//        brokenXTV.setText(tempBrokenX);
+//        brokenYTV.setText(tempBrokenY);
         brokenBatchNameTV.setText(tempBatchName);
 
 
