@@ -195,25 +195,30 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //                        }
 //                    }, 0,60000);
 
-//                    Handler handler = new Handler();
-//                    // Define the code block to be executed
-//
-//                    Runnable runnableCode = new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            // Do something here on the main thread
-//                            Log.d("Handlers", "Called on main thread");
-//                            // Repeat this the same runnable code block again another 2 seconds
-//                            // 'this' is referencing the Runnable object
-//                            getLocation();
-//                            ReferenceData.sampleBrokenX = locationLat;
-//                            ReferenceData.sampleBrokenY = locationLong;
-//                            InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
-//                            handler.postDelayed(this, 60000);
-//                        }
-//                    };
-//                    // Start the initial runnable task by posting through the handler
-//                    handler.post(runnableCode);
+                    Handler handler = new Handler();
+                    // Define the code block to be executed
+
+                    Runnable runnableCode = new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something here on the main thread
+                            Log.d("Handlers", "Called on main thread");
+                            // Repeat this the same runnable code block again another 2 seconds
+                            // 'this' is referencing the Runnable object
+                            getLocation();
+                            ReferenceData.sampleBrokenX = locationLat;
+                            ReferenceData.sampleBrokenY = locationLong;
+                            InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+                            handler.postDelayed(this, 60000);
+
+                            //
+                            Intent intent = new Intent(getApplicationContext(),TrackBreakLocInMapsActivity.class);
+                            startActivity(intent);
+
+                        }
+                    };
+                    // Start the initial runnable task by posting through the handler
+                    handler.post(runnableCode);
 //                    try {
 //
 //                        ScheduleRepeatTaskTimer.repeatTask(locationLat, locationLong, view.getContext());
@@ -222,11 +227,11 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //                    }
 
                     //TODO: // disable for test periodic locations track
-//                            Intent intent = new Intent(view.getContext(), TrackBreakLocInMapsActivity.class);
-                            Intent intent = new Intent(this, TrackBreakLocInMapsActivity.class);
-//                            intent.putExtra("locationLatVal", locationLat);
-//                            intent.putExtra("locationLongVal", locationLong);
-                            startActivity(intent);
+////                            Intent intent = new Intent(view.getContext(), TrackBreakLocInMapsActivity.class);
+//                            Intent intent = new Intent(this, TrackBreakLocInMapsActivity.class);
+////                            intent.putExtra("locationLatVal", locationLat);
+////                            intent.putExtra("locationLongVal", locationLong);
+//                            startActivity(intent);
 
                     //call Track repeat task timer class
 

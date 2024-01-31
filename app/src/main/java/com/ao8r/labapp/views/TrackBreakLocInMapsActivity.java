@@ -4,15 +4,20 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 
 import com.ao8r.labapp.R;
 import com.ao8r.labapp.customiz.CustomToast;
+import com.ao8r.labapp.customiz.GetLocation;
+import com.ao8r.labapp.customiz.ScheduleRepeatTaskTimer;
 import com.ao8r.labapp.databinding.ActivityTrackBreakLocInMapsBinding;
 import com.ao8r.labapp.models.BreakPointsModel;
 import com.ao8r.labapp.models.MapParamsModel;
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.GetAllBreakPointTrackList;
 import com.ao8r.labapp.repository.GetAllPathLocationsPoints;
+import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,6 +34,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
     private ActivityTrackBreakLocInMapsBinding binding;
     private ArrayList<BreakPointsModel> breakPointsModelArrayList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
         mapFragment.getMapAsync(this);
 
 
+
         //         in below line we are initializing our array list.
         breakPointsModelArrayList = new ArrayList<>();
         try {
@@ -53,22 +60,16 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
             }
             //first step of debug in breakPoint screen
 
-            System.out.println("1-first step of debug in breakPoint screen -- onCreate on breakPoint");
+            System.out.println("first step of debug in breakPoint screen -- onCreate on breakPoint");
         } catch (Exception e) {
             e.getStackTrace();
             CustomToast.customToast(getApplicationContext(), "عفو هذا المسار لم يتم ادراجه");
         }
+
+
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         try {
@@ -86,16 +87,16 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 15.0f));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(11.0f));
 
-            for(BreakPointsModel breakPointsModel: breakPointsModelArrayList){
-                if(breakPointsModel.getMapBreakLocLat() == Double.parseDouble(ReferenceData.sampleBrokenX)
-                        && breakPointsModel.getMapBreakLocLong() == Double.parseDouble(ReferenceData.sampleBrokenY)){
+            for (BreakPointsModel breakPointsModel : breakPointsModelArrayList) {
+                if (breakPointsModel.getMapBreakLocLat() == Double.parseDouble(ReferenceData.sampleBrokenX)
+                        && breakPointsModel.getMapBreakLocLong() == Double.parseDouble(ReferenceData.sampleBrokenY)) {
                     continue;
                 }
 
                 LatLng markers = new LatLng(breakPointsModel.getMapBreakLocLat(), breakPointsModel.getMapBreakLocLong());
                 mMap.addMarker(new MarkerOptions()
                         .position(markers)
-                        .title(breakPointsModel.getMapBreakLocLat()+","+breakPointsModel.getMapBreakLocLong())
+                        .title(breakPointsModel.getMapBreakLocLat() + "," + breakPointsModel.getMapBreakLocLong())
                         .snippet(breakPointsModel.getMapBreakTime())
                         .icon(BitmapDescriptorFactory.defaultMarker(135f)));
 

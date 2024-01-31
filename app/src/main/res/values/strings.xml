@@ -38,6 +38,7 @@
     <string name="display_full_path_in_map">تحميل المسار على الخريطة</string>
     <string name="add_ip_address">add Ip address</string>
     <string name="please_enter_ip_address">Please Enter IP Address</string>
+    <string name="nav_to_broken">Open Broken Screen</string>
     <string name="map_api_key">AIzaSyD8pcx661wef6r3hyEJnfqoCVhYhFJFs9k</string>
     <!--        <string name="map_api_key">AIzaSyDkbh3lIVsOvb40B6QnhlYR6IR4EKVLYYk</string>-->
 

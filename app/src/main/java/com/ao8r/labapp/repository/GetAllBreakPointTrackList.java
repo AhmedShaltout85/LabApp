@@ -27,7 +27,7 @@ public class GetAllBreakPointTrackList {
             if (connection == null) {
                 CustomToast.customToast(context, "عفو لايمكن الأتصال بالخادم");
             } else {
-                CustomToast.customToast(context, "جارى الأتصال بقاعدة البيانات");
+                CustomToast.customToast(context, "جارى تحديث ال TRACK");
                 //Query
 //              "SELECT * FROM Branch";
 
