@@ -174,7 +174,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                 }
 
                 if (locationLat != null && locationLong != null) {
-                    System.out.println("BREAK-LOCATION-STARTED");
+                    System.out.println("BREAK-LOCATION-STARTED--TRACKing-From MenuScreen");
                     ReferenceData.sampleBrokenX = locationLat;
                     ReferenceData.sampleBrokenY = locationLong;
                     System.out.println(locationLat);

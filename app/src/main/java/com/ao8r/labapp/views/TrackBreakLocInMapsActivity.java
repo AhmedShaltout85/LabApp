@@ -3,6 +3,7 @@ package com.ao8r.labapp.views;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import com.ao8r.labapp.R;
 import com.ao8r.labapp.customiz.CustomToast;
 import com.ao8r.labapp.customiz.GetLocation;
+import com.ao8r.labapp.customiz.ReadWriteFileFromInternalMem;
 import com.ao8r.labapp.customiz.ScheduleRepeatTaskTimer;
 import com.ao8r.labapp.databinding.ActivityTrackBreakLocInMapsBinding;
 import com.ao8r.labapp.models.BreakPointsModel;
@@ -20,6 +22,8 @@ import com.ao8r.labapp.models.MapParamsModel;
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.GetAllBreakPointTrackList;
 import com.ao8r.labapp.repository.GetAllPathLocationsPoints;
+import com.ao8r.labapp.repository.GetLabAndSectorNameForBrokenPoint;
+import com.ao8r.labapp.repository.GetMaxSampleCodeForBrokenPoint;
 import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,6 +32,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
@@ -126,10 +132,33 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                         .icon(BitmapDescriptorFactory.defaultMarker(135f)));
 
 
+                 BreakPointsModel lastRecord = breakPointsModelArrayList.get(breakPointsModelArrayList.size() - 1);
+                System.out.println(lastRecord);
+                System.out.println("lastRecord ---"+lastRecord.getMapBreakLocLat() + "--" + lastRecord.getMapBreakLocLong());
+
+                LatLng lastMarker = new LatLng(lastRecord.getMapBreakLocLat(), lastRecord.getMapBreakLocLong());
+
+                mMap.addMarker(
+                        new MarkerOptions()
+                                .position(lastMarker)
+                                .title(lastRecord.getMapBreakLocLat() + "," + lastRecord.getMapBreakLocLong())
+                                .snippet("النقطة الحاليه على ال Track")
+                                .icon(BitmapDescriptorFactory.defaultMarker(35f)));
+
+
                 // below line is use to move our camera to the specific location.
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers, 15.0f));
                 // below line is use to zoom our camera on map.
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(11.0f));
+
+                mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, lastMarker).
+                        // below line is use to specify the width of poly line.
+                                width(5)
+                        // below line is use to add color to our poly line.
+                        .color(Color.BLUE)
+                        // below line is to make our poly line geodesic.
+                        );
+
             }
         } catch (Exception exception) {
             CustomToast.customToast(getApplicationContext(), "حدث خطا أثناء تجميل المسار");
