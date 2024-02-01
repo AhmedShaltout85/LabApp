@@ -107,22 +107,35 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
             mMap = googleMap;
 //        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             // Add a marker in Sydney and move the camera
-            LatLng trackStartPoint = new LatLng(Double.parseDouble(ReferenceData.sampleBrokenX),
-                    Double.parseDouble(ReferenceData.sampleBrokenY));
-            mMap.addMarker(
-                    new MarkerOptions()
-                            .position(trackStartPoint)
-                            .title(ReferenceData.sampleBrokenX + "," + ReferenceData.sampleBrokenY)
-                            .snippet("نقطة بداية ال Track")
-                            .icon(BitmapDescriptorFactory.defaultMarker(35f)));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 15.0f));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(11.0f));
+//            LatLng trackStartPoint = new LatLng(Double.parseDouble(ReferenceData.sampleBrokenX),
+//                    Double.parseDouble(ReferenceData.sampleBrokenY));
+//            mMap.addMarker(
+//                    new MarkerOptions()
+//                            .position(trackStartPoint)
+//                            .title(ReferenceData.sampleBrokenX + "," + ReferenceData.sampleBrokenY)
+//                            .snippet("نقطة بداية ال Track")
+//                            .icon(BitmapDescriptorFactory.defaultMarker(35f)));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 27.0f));
+//            mMap.animateCamera(CameraUpdateFactory.zoomTo(27.0f));
 
             for (BreakPointsModel breakPointsModel : breakPointsModelArrayList) {
-                if (breakPointsModel.getMapBreakLocLat() == Double.parseDouble(ReferenceData.sampleBrokenX)
-                        && breakPointsModel.getMapBreakLocLong() == Double.parseDouble(ReferenceData.sampleBrokenY)) {
-                    continue;
-                }
+//                if (breakPointsModel.getMapBreakLocLat() == Double.parseDouble(ReferenceData.sampleBrokenX)
+//                        && breakPointsModel.getMapBreakLocLong() == Double.parseDouble(ReferenceData.sampleBrokenY)) {
+//                    continue;
+//                }
+//                LatLng trackStartPoint = new LatLng(Double.parseDouble(ReferenceData.sampleBrokenX),
+//                        Double.parseDouble(ReferenceData.sampleBrokenY));
+                LatLng trackStartPoint = new LatLng(breakPointsModelArrayList.get(0).getMapBreakLocLat(),
+                        breakPointsModelArrayList.get(0).getMapBreakLocLong());
+
+                mMap.addMarker(
+                        new MarkerOptions()
+                                .position(trackStartPoint)
+                                .title(ReferenceData.sampleBrokenX + "," + ReferenceData.sampleBrokenY)
+                                .snippet("نقطة بداية ال Track")
+                                .icon(BitmapDescriptorFactory.defaultMarker(35f)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 27.0f));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(27.0f));
 
                 LatLng markers = new LatLng(breakPointsModel.getMapBreakLocLat(), breakPointsModel.getMapBreakLocLong());
                 mMap.addMarker(new MarkerOptions()
@@ -143,21 +156,32 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                                 .position(lastMarker)
                                 .title(lastRecord.getMapBreakLocLat() + "," + lastRecord.getMapBreakLocLong())
                                 .snippet("النقطة الحاليه على ال Track")
-                                .icon(BitmapDescriptorFactory.defaultMarker(35f)));
+                                .icon(BitmapDescriptorFactory.defaultMarker(35f))
+                );
 
 
                 // below line is use to move our camera to the specific location.
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers, 15.0f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers, 27.0f));
                 // below line is use to zoom our camera on map.
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(11.0f));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(27.0f));
 
                 mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, lastMarker).
                         // below line is use to specify the width of poly line.
                                 width(5)
                         // below line is use to add color to our poly line.
-                        .color(Color.BLUE)
+                        .color(Color.RED)
                         // below line is to make our poly line geodesic.
                         );
+//                polyline with every track point
+
+//                mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, markers).
+//                        // below line is use to specify the width of poly line.
+//                                width(5)
+//                        // below line is use to add color to our poly line.
+//                        .color(Color.BLUE)
+//                        // below line is to make our poly line geodesic.
+//                        );
+
 
             }
         } catch (Exception exception) {
