@@ -131,7 +131,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                 mMap.addMarker(
                         new MarkerOptions()
                                 .position(trackStartPoint)
-                                .title(ReferenceData.sampleBrokenX + "," + ReferenceData.sampleBrokenY)
+                                .title(breakPointsModelArrayList.get(0).getMapBreakLocLat() + "," + breakPointsModelArrayList.get(0).getMapBreakLocLong())
                                 .snippet("نقطة بداية ال Track")
                                 .icon(BitmapDescriptorFactory.defaultMarker(35f)));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 27.0f));
