@@ -31,7 +31,7 @@ public class GetAllBreakPointTrackList {
                 //Query
 //              "SELECT * FROM Branch";
 
-                String updateQuery = "SELECT * FROM Track_break_locations WHERE lab_code = ? AND break_date = ?;";
+                String updateQuery = "SELECT * FROM Track_break_locations WHERE lab_code = ? AND break_date = ? ORDER BY break_time ASC;";
 
                 PreparedStatement statement = connection.prepareStatement(updateQuery);
                 statement.setString(1, ReadWriteFileFromInternalMem.getLabCodeFromFile());

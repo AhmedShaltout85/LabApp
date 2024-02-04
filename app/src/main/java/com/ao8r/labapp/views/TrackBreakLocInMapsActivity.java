@@ -167,20 +167,28 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
 
                 mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, lastMarker).
                         // below line is use to specify the width of poly line.
-                                width(5)
+                                width(7)
                         // below line is use to add color to our poly line.
                         .color(Color.RED)
                         // below line is to make our poly line geodesic.
                         );
+
+
 //                polyline with every track point
 
-//                mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, markers).
-//                        // below line is use to specify the width of poly line.
-//                                width(5)
-//                        // below line is use to add color to our poly line.
-//                        .color(Color.BLUE)
-//                        // below line is to make our poly line geodesic.
-//                        );
+
+//                for(int i=0;i<breakPointsModelArrayList.size();i++){
+////                    new PolylineOptions().add(new LatLng(breakPointsModelArrayList.get(i).getMapBreakLocLat(), breakPointsModelArrayList.get(i).getMapBreakLocLong()));
+//                    mMap.addPolyline((new PolylineOptions()
+//                                    .add(new LatLng(breakPointsModelArrayList.get(i).getMapBreakLocLat(),
+//                                            breakPointsModelArrayList.get(i).getMapBreakLocLong()))).
+//                                    // below line is use to specify the width of poly line.
+//                                            width(5)
+//                                    // below line is use to add color to our poly line.
+//                                    .color(Color.BLUE)
+//                            // below line is to make our poly line geodesic.
+//                    );
+//                }
 
 
             }
