@@ -23,7 +23,11 @@ FROM lab_samples
 WHERE lab_code = 15 
 AND batche_name = 'مراحل تنقية مياه الزهور';
 
-select * from "Track_break_locations";]]></console>
+select * 
+from "Track_break_locations"
+where lab_code = 15 and break_id = 0
+and break_date = '2024-02-10' 
+order by break_time asc ;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

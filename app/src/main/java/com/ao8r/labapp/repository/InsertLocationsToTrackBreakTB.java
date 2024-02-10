@@ -47,6 +47,7 @@ public class InsertLocationsToTrackBreakTB {
 
                 statement.setDate(1, CustomTimeAndDate.getCurrentDate());
                 statement.setInt(2, 0);
+//                statement.setInt(2, 9);
                 statement.setTime(3, CustomTimeAndDate.getCurrentTime());
                 statement.setString(4, ReadWriteFileFromInternalMem.getLabCodeFromFile());
                 statement.setString(5, ReferenceData.labName);

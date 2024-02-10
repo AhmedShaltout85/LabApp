@@ -1,30 +1,20 @@
 package com.ao8r.labapp.views;
 
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.ao8r.labapp.R;
 import com.ao8r.labapp.customiz.CustomToast;
-import com.ao8r.labapp.customiz.GetLocation;
-import com.ao8r.labapp.customiz.ReadWriteFileFromInternalMem;
-import com.ao8r.labapp.customiz.ScheduleRepeatTaskTimer;
 import com.ao8r.labapp.databinding.ActivityTrackBreakLocInMapsBinding;
 import com.ao8r.labapp.models.BreakPointsModel;
-import com.ao8r.labapp.models.MapParamsModel;
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.GetAllBreakPointTrackList;
-import com.ao8r.labapp.repository.GetAllPathLocationsPoints;
-import com.ao8r.labapp.repository.GetLabAndSectorNameForBrokenPoint;
-import com.ao8r.labapp.repository.GetMaxSampleCodeForBrokenPoint;
-import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,7 +22,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
@@ -79,6 +68,15 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
         navToBrokenScreenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //stop timer
+                MenuScreen menuScreen = new MenuScreen();
+                menuScreen.handler.removeCallbacks(menuScreen.runnableCode);
+                menuScreen.handler.removeCallbacksAndMessages(null);
+                menuScreen.isActive = false;
+                menuScreen.timer.cancel();
+                menuScreen.timer.purge();
+                CustomToast.customToast(v.getContext(), "تم إيقاف تتبع الكسر");
+
                 if(!ReferenceData.sampleBrokenX.isEmpty() && !ReferenceData.sampleBrokenY.isEmpty()){
                     Intent intent = new Intent(getApplicationContext(), AddBrokenPointScreen.class);
                     startActivity(intent);

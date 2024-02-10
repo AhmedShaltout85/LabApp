@@ -170,4 +170,15 @@ public class AddBrokenPointScreen extends AppCompatActivity implements AdapterVi
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+    //    Go Back to MenuScreen
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(AddBrokenPointScreen.this, MenuScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+
+    }
 }

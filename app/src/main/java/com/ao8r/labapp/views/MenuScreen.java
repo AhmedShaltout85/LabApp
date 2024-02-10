@@ -19,6 +19,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +43,8 @@ import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MenuScreen extends AppCompatActivity implements OnClickListener, LocationListener {
@@ -50,6 +52,10 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
     private Button addNewSample, newSrcSample, addBrokenPoint, addOnSiteTests;
     private String locationLong, locationLat;
     private IntentIntegrator qrScanner;
+    Handler handler = new Handler(Looper.getMainLooper());
+    Runnable runnableCode;
+    Timer timer = new Timer();
+    boolean isActive;
 
 
     @Override
@@ -77,11 +83,28 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
         addOnSiteTests = findViewById(id.addOnSiteTestButton);
 
 
+        //Activate long press in Break Button
+
+        addBrokenPoint.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                CustomToast.customToast(v.getContext(), "تم إيقاف تتبع الكسر");
+                isActive = false;
+                handler.removeCallbacksAndMessages(null);
+                handler.removeCallbacks(runnableCode);
+                handler.removeMessages(0);
+                timer.cancel();
+                timer.purge();
+                return false;
+            }
+        });
+
 //        set action in Buttons
         addNewSample.setOnClickListener(this);
         newSrcSample.setOnClickListener(this);
         addBrokenPoint.setOnClickListener(this);
         addOnSiteTests.setOnClickListener(this);
+
 
         //ask for location permission  ** run time permission
         if (ContextCompat.checkSelfPermission(MenuScreen.this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -104,10 +127,28 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 //        getLocation();
 //    }
 
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        handler.removeCallbacks(this.runnableCode);
+//    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
+
     //    Go Back to LoginPage
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        handler.removeCallbacks(runnableCode);
+        handler.removeCallbacksAndMessages(null);
+        timer.cancel();
+        timer.purge();
         Intent intent = new Intent(MenuScreen.this, LoginScreen.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -179,26 +220,41 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                     ReferenceData.sampleBrokenY = locationLong;
                     System.out.println(locationLat);
                     System.out.println(locationLong);
-                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+                    try {
+                        InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+                    }catch (Exception e){
+                        CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+                    }
 
                     //loop for track location
 //                    Timer timer = new Timer();
+//                    isActive = true;
+//                    if(isActive){
+
+//                        timer.schedule(new TimerTask() {
+//                            public void run() {
+//                                //Called in a secondary thread.
+//                                //GUI update not allowed.
+//                                getLocation();
+//                                ReferenceData.sampleBrokenX = locationLat;
+//                                ReferenceData.sampleBrokenY = locationLong;
+//                                try {
+//                                    InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+//                                }catch (Exception e){
+//                                    CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+//                                }
+//                                Intent intent = new Intent(getApplicationContext(), TrackBreakLocInMapsActivity.class);
+//                                startActivity(intent);
+//                            }
+//                        }, 0,60000);
 //
-//                    timer.schedule(new TimerTask() {
-//                        public void run() {
-//                            //Called in a secondary thread.
-//                            //GUI update not allowed.
-//                            getLocation();
-//                            ReferenceData.sampleBrokenX = locationLat;
-//                            ReferenceData.sampleBrokenY = locationLong;
-//                            InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
-//                        }
-//                    }, 0,60000);
+                        ///
+//                    Handler handler = new Handler();
+//                    handler = new Handler();
+                        // Define the code block to be executed
 
-                    Handler handler = new Handler();
-                    // Define the code block to be executed
-
-                    Runnable runnableCode = new Runnable() {
+//                    Runnable runnableCode = new Runnable() {
+                    runnableCode = new Runnable() {
                         @Override
                         public void run() {
                             // Do something here on the main thread
@@ -208,17 +264,26 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                             getLocation();
                             ReferenceData.sampleBrokenX = locationLat;
                             ReferenceData.sampleBrokenY = locationLong;
-                            InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
-                            handler.postDelayed(this, 60000);
+                            try {
+
+                                InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+                            }catch (Exception e){
+                                CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+                            }
+                            handler.postDelayed(runnableCode, 60000);
+
 
                             //
-                            Intent intent = new Intent(getApplicationContext(),TrackBreakLocInMapsActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), TrackBreakLocInMapsActivity.class);
                             startActivity(intent);
 
                         }
                     };
+
                     // Start the initial runnable task by posting through the handler
                     handler.post(runnableCode);
+//                    }
+                    ///
 //                    try {
 //
 //                        ScheduleRepeatTaskTimer.repeatTask(locationLat, locationLong, view.getContext());
@@ -262,6 +327,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 
 
     }
+
 
     public void scanData() {
         qrScanner = new IntentIntegrator(this);
