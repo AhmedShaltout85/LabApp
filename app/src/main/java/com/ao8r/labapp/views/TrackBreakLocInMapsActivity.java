@@ -22,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
     private ActivityTrackBreakLocInMapsBinding binding;
     private ArrayList<BreakPointsModel> breakPointsModelArrayList;
     Button navToBrokenScreenBtn;
-
+    private ArrayList<LatLng> polylinePoints = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,13 +164,13 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                 // below line is use to zoom our camera on map.
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(27.0f));
 
-                mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, lastMarker).
-                        // below line is use to specify the width of poly line.
-                                width(7)
-                        // below line is use to add color to our poly line.
-                        .color(Color.RED)
-                        // below line is to make our poly line geodesic.
-                        );
+//                mMap.addPolyline((new PolylineOptions()).add(trackStartPoint, lastMarker).
+//                        // below line is use to specify the width of poly line.
+//                                width(7)
+//                        // below line is use to add color to our poly line.
+//                        .color(Color.RED)
+//                        // below line is to make our poly line geodesic.
+//                        );
 
 
 //                polyline with every track point
@@ -187,13 +188,25 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
 //                            // below line is to make our poly line geodesic.
 //                    );
 //                }
-
+                polylinePoints.add(new LatLng(breakPointsModel.getMapBreakLocLat(), breakPointsModel.getMapBreakLocLong()));
+                drawPolyline(polylinePoints);
 
             }
         } catch (Exception exception) {
             CustomToast.customToast(getApplicationContext(), "حدث خطا أثناء تجميل المسار");
         }
     }
+    private void drawPolyline(ArrayList<LatLng> points) {
+        if (mMap != null && points.size() > 1) {
+            PolylineOptions polylineOptions = new PolylineOptions()
+                    .addAll(points)
+                    .color(getResources().getColor(R.color.colorPrimary)) // Change the color as needed
+                    .width(9); // Change the width as needed
 
+            Polyline polyline = mMap.addPolyline(polylineOptions);
+
+            // Optionally, zoom the camera to fit the polyline
+        }
+        }
 
 }
