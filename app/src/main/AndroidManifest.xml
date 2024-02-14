@@ -57,6 +57,12 @@
             android:name=".views.TrackBreakLocInMapsActivity"
             android:exported="false"
             android:label="@string/title_activity_track_break_loc_in_maps" />
+
+        <activity
+            android:name=".views.TrackBreakLocDisplayInMapsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:label="@string/title_activity_track_break_display_loc_in_maps" />
         <activity
             android:name=".views.MapsActivity2"
             android:exported="false"

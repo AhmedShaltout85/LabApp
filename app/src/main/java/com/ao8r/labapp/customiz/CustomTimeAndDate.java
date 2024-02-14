@@ -28,3 +28,31 @@ public class CustomTimeAndDate {
 
 
 }
+
+// fromDate = findViewById(R.id.getEndDateReportPeriodicIdBtn);
+//         fromDate.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//
+//        MaterialDatePicker materialDatePickerFrom = MaterialDatePicker.Builder.datePicker()
+//        .setTitleText("تاريخ بداية البحث")
+//        .build();
+//        materialDatePickerFrom.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+//@Override
+//public void onPositiveButtonClick(Object selection) {
+//
+//        ///
+//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+//        calendar.setTimeInMillis((Long) selection);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        StoresConstants.START_DATE = format.format(calendar.getTime());
+//        fromDate.setText(StoresConstants.START_DATE);
+//        CustomToast.customToast(getApplicationContext(), StoresConstants.START_DATE);
+//        System.out.println(StoresConstants.START_DATE);
+//
+//        }
+//        });
+//        materialDatePickerFrom.show(getSupportFragmentManager(), "ShowDATEFrom");
+//
+//        }
+//        });

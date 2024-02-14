@@ -132,7 +132,8 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                                 .position(trackStartPoint)
                                 .title(breakPointsModelArrayList.get(0).getMapBreakLocLat() + "," + breakPointsModelArrayList.get(0).getMapBreakLocLong())
                                 .snippet("نقطة بداية ال Track")
-                                .icon(BitmapDescriptorFactory.defaultMarker(35f)));
+//                                .icon(BitmapDescriptorFactory.defaultMarker(35f))
+                );
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 27.0f));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(27.0f));
 
@@ -141,7 +142,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                         .position(markers)
                         .title(breakPointsModel.getMapBreakLocLat() + "," + breakPointsModel.getMapBreakLocLong())
                         .snippet(breakPointsModel.getMapBreakTime())
-                        .icon(BitmapDescriptorFactory.defaultMarker(135f)));
+                        .icon(BitmapDescriptorFactory.defaultMarker(35f)));
 
 
                  BreakPointsModel lastRecord = breakPointsModelArrayList.get(breakPointsModelArrayList.size() - 1);
@@ -155,7 +156,7 @@ public class TrackBreakLocInMapsActivity extends FragmentActivity implements OnM
                                 .position(lastMarker)
                                 .title(lastRecord.getMapBreakLocLat() + "," + lastRecord.getMapBreakLocLong())
                                 .snippet("النقطة الحاليه على ال Track")
-                                .icon(BitmapDescriptorFactory.defaultMarker(35f))
+                                .icon(BitmapDescriptorFactory.defaultMarker(135f))
                 );
 
 

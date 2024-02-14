@@ -76,6 +76,10 @@ public class ReferenceData {
 //    public static String SECTOR_NAME;
 
 
+    //TRACKING INFO
+    public static String TRACK_LAB_CODE;
+    public static String TRACK_BREAK_ID;
+    public static String TRACK_BREAK_DATE;
     // Compared X and Y
     public static String originX;
     public static String originY;

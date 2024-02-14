@@ -40,6 +40,7 @@ import com.ao8r.labapp.repository.GetLabAndSectorNameForBrokenPoint;
 import com.ao8r.labapp.repository.GetMaxSampleCodeForBrokenPoint;
 
 import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -56,7 +57,7 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
     Runnable runnableCode;
     Timer timer = new Timer();
     boolean isActive;
-
+    private FloatingActionButton trackingLocationFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,15 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
         addBrokenPoint = findViewById(id.addBrokenPointButton);
         addOnSiteTests = findViewById(id.addOnSiteTestButton);
 
+        // declare fab
+        trackingLocationFab = findViewById(R.id.trackLocsFab);
+        trackingLocationFab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),TrackBreakLocDisplayInMapsActivity.class );
+                startActivity(intent);
+            }
+        });
 
         //Activate long press in Break Button
 
@@ -223,7 +233,9 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                     try {
                         InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
                     }catch (Exception e){
-                        CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+//                        CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+                        CustomToast.customToast(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+
                     }
 
                     //loop for track location
@@ -268,7 +280,8 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
 
                                 InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
                             }catch (Exception e){
-                                CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+//                                CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+                                CustomToast.customToast(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
                             }
                             handler.postDelayed(runnableCode, 60000);
 
