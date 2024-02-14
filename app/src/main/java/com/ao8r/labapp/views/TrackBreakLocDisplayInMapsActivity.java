@@ -6,8 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 
 import androidx.fragment.app.FragmentActivity;
@@ -18,8 +21,10 @@ import com.ao8r.labapp.customiz.CustomToast;
 import com.ao8r.labapp.databinding.ActivityTrackBreakLocDisplayInMapsBinding;
 import com.ao8r.labapp.models.BreakPointsModel;
 
+import com.ao8r.labapp.models.OnSiteTestModel;
 import com.ao8r.labapp.models.ReferenceData;
 import com.ao8r.labapp.repository.GetAllBreakPointTrackListToDisplay;
+import com.ao8r.labapp.repository.GetAllLabCodeListForBreakPointsDropdown;
 import com.ao8r.labapp.services.InternetConnection;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,15 +44,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
 
 //    private MapView mapView;
     private GoogleMap mMap;
     private ActivityTrackBreakLocDisplayInMapsBinding binding;
     private ArrayList<BreakPointsModel> breakPointsModelArrayList;
     private ArrayList<LatLng> polylinePoints = new ArrayList<>();
-    EditText enterLabCode, enterBreakId;
+    EditText  enterBreakId;
     Button refreshTrackBtn, breakDateBtn;
+    ArrayList<BreakPointsModel> breakPointsModelLabCodeArrayList;
+    Spinner mapBreakPointLabCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +71,31 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
         //declare vars
 //        navToBrokenScreenBtn =findViewById(R.id.navToBrokenScreen);
         enterBreakId = findViewById(R.id.addBreakId);
-        enterLabCode = findViewById(R.id.addLabCode);
         refreshTrackBtn = findViewById(R.id.refreshTrackBtn);
         breakDateBtn = findViewById(R.id.selectBreakDate);
+        mapBreakPointLabCode = findViewById(R.id.addLabCode);
 
-
+// get mapBreakPointLABCODES
+        try {
+            breakPointsModelLabCodeArrayList =
+            GetAllLabCodeListForBreakPointsDropdown.getAllLabCodeListForBreakPointsDropdown(getApplicationContext());
+        }catch (Exception e){
+            e.getStackTrace();
+            CustomToast.customToast(getApplicationContext(), "الانترنت غير مستقر, حاول مره أخرى");
+        }
+        ArrayAdapter<BreakPointsModel> spinnerBreakLabCodeType = new
+                ArrayAdapter<BreakPointsModel>(TrackBreakLocDisplayInMapsActivity.this,
+                android.R.layout.simple_spinner_item,
+                breakPointsModelLabCodeArrayList
+                );
+        spinnerBreakLabCodeType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mapBreakPointLabCode.setAdapter(spinnerBreakLabCodeType);
+        mapBreakPointLabCode.setOnItemSelectedListener(this);
         // active action in button
         refreshTrackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ReferenceData.TRACK_LAB_CODE = enterLabCode.getText().toString();
+//                ReferenceData.TRACK_LAB_CODE = enterLabCode.getText().toString();
                 ReferenceData.TRACK_BREAK_ID = enterBreakId.getText().toString();
 
                 if(        ReferenceData.TRACK_LAB_CODE.isEmpty()
@@ -260,6 +282,17 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
             // Optionally, zoom the camera to fit the polyline
         }
         }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        ReferenceData.TRACK_LAB_CODE = parent.getItemAtPosition(position).toString();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
     // Override necessary lifecycle methods for MapView
 //    @Override
