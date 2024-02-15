@@ -74,7 +74,8 @@ public class ReferenceData {
 //    //Global LAB DATA
 //    public static String LAB_NAME = onSiteTestSampleLabName;
 //    public static String SECTOR_NAME;
-
+    // Spinner vars
+public static String SELECTED_ITEM_SPINNER;
 
     //TRACKING INFO
     public static String TRACK_LAB_CODE;

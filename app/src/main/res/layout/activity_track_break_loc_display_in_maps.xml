@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+<?xml version="1.0" encoding="utf-8"?><!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--    xmlns:map="http://schemas.android.com/apk/res-auto"-->
 <!--    xmlns:tools="http://schemas.android.com/tools"-->
 <!--    android:id="@+id/displayMap"-->
@@ -8,81 +7,120 @@
 <!--    android:layout_height="match_parent"-->
 <!--    tools:context=".views.TrackBreakLocDisplayInMapsActivity" />-->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Spinner
             android:id="@+id/addLabCode"
-            android:hint="@string/enter_lab_code"
-            android:textColor="@android:color/white"
-            android:textSize="10sp"
-            android:inputType="number"
-            android:padding="3dp"
-            android:textAlignment="center"
-            android:layout_margin="5dp"
             android:layout_width="0dp"
             android:layout_height="45dp"
+            android:layout_margin="5dp"
             android:layout_weight=".5"
-            android:background="@drawable/rounded_button_blue"/>
+            android:background="@drawable/rounded_button_txt"
+            android:padding="3dp"
+            android:textColor="@color/text"
+            android:textSize="15sp" />
+
         <EditText
             android:id="@+id/addBreakId"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:layout_weight=".5"
+            android:background="@drawable/rounded_button_txt"
             android:hint="@string/enter_break_id"
-            android:textColor="@android:color/white"
-            android:textSize="10sp"
             android:inputType="number"
             android:padding="3dp"
             android:textAlignment="center"
-            android:layout_margin="5dp"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight=".5"
-            android:background="@drawable/rounded_button_blue"/>
+            android:textColor="@color/text"
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/selectBreakDate"
-            android:layout_margin="5dp"
-            android:padding="3dp"
             android:layout_width="0dp"
             android:layout_height="45dp"
+            android:layout_margin="5dp"
             android:layout_weight=".3"
+            android:background="@drawable/rounded_button_blue"
+            android:drawableEnd="@drawable/calendar"
+            android:padding="3dp"
             android:text="@string/select_date"
-            android:textSize="13sp"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:background="@drawable/rounded_button_blue"
-            android:drawableEnd="@drawable/calendar"/>
+            android:textSize="13sp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/refreshTrackBtn"
-        android:text="@string/refresh_locs_track"
-        android:textSize="13sp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/rounded_button_blue"
-        android:drawableEnd="@drawable/refresh_locs"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="10dp"
-        android:padding="2dp"/>
+        android:background="@drawable/rounded_button_blue"
+        android:drawableEnd="@drawable/refresh_locs"
+        android:padding="2dp"
+        android:text="@string/refresh_locs_track"
+        android:textColor="@android:color/white"
+        android:textSize="13sp" />
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/displayMap"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.TrackBreakLocDisplayInMapsActivity" />
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/displayMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.TrackBreakLocDisplayInMapsActivity" />
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:indeterminateTint="@color/colorPrimaryDark" />-->
+
+</RelativeLayout>
 
 
 </LinearLayout>
+
+    <!--<Spinner-->
+    <!--android:id="@+id/addLabCode"-->
+    <!--android:hint="@string/enter_lab_code"-->
+    <!--android:textColor="@android:color/white"-->
+    <!--android:textSize="10sp"-->
+    <!--android:inputType="number"-->
+    <!--android:padding="3dp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="45dp"-->
+    <!--android:layout_weight=".5"-->
+    <!--android:background="@drawable/rounded_button_blue"/>-->
+    <!--<Spinner-->
+    <!--android:id="@+id/addBreakId"-->
+    <!--android:hint="@string/enter_break_id"-->
+    <!--android:textColor="@android:color/white"-->
+    <!--android:textSize="10sp"-->
+    <!--android:inputType="number"-->
+    <!--android:padding="3dp"-->
+    <!--android:textAlignment="center"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="45dp"-->
+    <!--android:layout_weight=".5"-->
+    <!--android:background="@drawable/rounded_button_blue"/>-->

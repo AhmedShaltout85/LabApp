@@ -24,10 +24,12 @@ WHERE lab_code = 15
 AND batche_name = 'مراحل تنقية مياه الزهور';
 
 select * 
-from "Track_break_locations" 
-where lab_code = 7 and break_id = 11
-and break_date = '2024-02-10' 
-order by break_time asc ;]]></console>
+from "Track_break_locations" ;
+--where lab_code = 7 and break_id = 11
+--and break_date = '2024-02-10' 
+--order by break_time asc ;
+
+SELECT Distinct break_id FROM Track_break_locations WHERE lab_code = 7 ORDER BY break_id ASC;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
