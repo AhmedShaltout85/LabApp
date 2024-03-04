@@ -1,10 +1,15 @@
 package com.ao8r.labapp.views;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +32,7 @@ import com.ao8r.labapp.models.ReferenceData;
 
 import com.ao8r.labapp.repository.GetAllBreakPointTrackListToDisplay;
 import com.ao8r.labapp.repository.GetAllLabCodeListForBreakPointsDropdown;
+import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
 import com.ao8r.labapp.services.InternetConnection;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,10 +60,11 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
     Button refreshTrackBtn, breakDateBtn;
     ArrayList<BreakPointsModel> breakPointsModelLabCodeArrayList;
     EditText enterBreakId;
-//    ArrayList<GetBreakIdTrackLocationsModel> getBreakIdTrackLocationsModelArrayList;
+    //    ArrayList<GetBreakIdTrackLocationsModel> getBreakIdTrackLocationsModelArrayList;
     Spinner mapBreakPointLabCodeSpinner, mapBreakPointBreakIdSpinner;
-//
-
+    //
+    Handler handler = new Handler(Looper.getMainLooper());
+    Runnable updatedTrackList;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -80,6 +87,16 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
         breakDateBtn = findViewById(R.id.selectBreakDate);
         mapBreakPointLabCodeSpinner = findViewById(R.id.addLabCode);
 
+        if (InternetConnection.checkConnection(getApplicationContext())) {
+            // Its Available...
+            CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+        } else {
+            // Not Available...
+            CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+
+        }
+
+
         // get mapBreakPointLABCODES
         try {
             breakPointsModelLabCodeArrayList =
@@ -96,7 +113,7 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
                 ArrayAdapter<BreakPointsModel>(TrackBreakLocDisplayInMapsActivity.this,
                 android.R.layout.simple_spinner_item,
                 breakPointsModelLabCodeArrayList
-                );
+        );
 
         spinnerBreakLabCodeType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mapBreakPointLabCodeSpinner.setAdapter(spinnerBreakLabCodeType);
@@ -117,11 +134,11 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
 //        ReferenceData.TRACK_BREAK_ID = ReferenceData.SELECTED_ITEM_SPINNER;
 
 
-
         // active action in button
         refreshTrackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 try {
                     if (InternetConnection.checkConnection(getApplicationContext())) {
@@ -132,6 +149,15 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
                         CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
 
                     }
+//                                        breakPointsModelArrayList.clear();
+
+                    //// hide keyboard after type
+//                    InputMethodManager imm = null;
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                        imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+//                    }
+//                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
 //                    ReferenceData.TRACK_LAB_CODE = ReferenceData.SELECTED_ITEM_SPINNER;
                     ReferenceData.TRACK_BREAK_ID = enterBreakId.getText().toString();
 
@@ -152,21 +178,59 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
                     if (breakPointsModelArrayList.isEmpty()) {
                         CustomToast.customToast(getApplicationContext(), "عفو ليس هناك مسار لهذه البيانات");
                     }
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         breakPointsModelArrayList
                                 .forEach(System.out::println);
                     }
                     //first step of debug in breakPoint screen
-                    System.out.println("first step of debug in breakPoint screen -- onCreate on breakPoint");
-//// hide keyboard after type
-//                    InputMethodManager imm = null;
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                        imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-//                    }
-//                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-
-//                 update track
+                    System.out.println("debug in breakPoint screen -- onCreate on Display Track breakPoint");
                     onMapReady(mMap);
+
+//                    Handler handler = new Handler();
+//                    handler = new Handler();
+                    // Define the code block to be executed
+
+//                    updatedTrackList = new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            // Do something here on the main thread
+//                            Log.d("Handlers", "Called on main thread");
+                            // Repeat this the same runnable code block again another 2 seconds
+                            // 'this' is referencing the Runnable object
+                            //initiate arraylists
+//
+//                            breakPointsModelArrayList = new ArrayList<>();
+//                            breakPointsModelArrayList =
+//                                    GetAllBreakPointTrackListToDisplay.getAllBreakPointTrackListToDisplay(getApplicationContext());
+//
+//
+////                            if (breakPointsModelArrayList.isEmpty()) {
+////                                CustomToast.customToast(getApplicationContext(), "عفو ليس هناك مسار لهذه البيانات");
+////                            }
+//
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                breakPointsModelArrayList
+//                                        .forEach(System.out::println);
+//                            }
+//                            //first step of debug in breakPoint screen
+//                            System.out.println("debug in breakPoint screen -- onCreate on Display Track breakPoint");
+//
+//                            onMapReady(mMap);
+////
+//
+//                            handler.postDelayed(updatedTrackList, 60000);
+//
+//                            //
+//                        }
+//                    };
+//
+//
+////                 update track
+//
+//                    // Start the initial runnable task by posting through the handler
+//                    handler.post(updatedTrackList);
+
 
                 } catch (Exception e) {
                     e.getStackTrace();
@@ -178,6 +242,7 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
         breakDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                handler.removeCallbacksAndMessages(null);
                 CustomToast.customToast(getApplicationContext(), "الضغط المطول لاختيار التاريخ");
                 ReferenceData.TRACK_BREAK_DATE = String.valueOf(CustomTimeAndDate.getCurrentDate());
                 System.out.println(String.valueOf(CustomTimeAndDate.getCurrentDate()));
@@ -189,8 +254,10 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
         breakDateBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                handler.removeCallbacksAndMessages(null);
 
-  //                 TODO Auto-generated method stub
+
+                //                 TODO Auto-generated method stub
                 MaterialDatePicker materialDatePickerTo = MaterialDatePicker.Builder.datePicker()
                         .setTitleText("تاريخ الكسر")
                         .build();
@@ -236,6 +303,7 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        handler.removeCallbacksAndMessages(null);
         Intent intent = new Intent(TrackBreakLocDisplayInMapsActivity.this, MenuScreen.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -263,7 +331,7 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
                 );
 //                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trackStartPoint, 12.0f));
 //                mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
-
+//
                 LatLng markers = new LatLng(breakPointsModel.getMapBreakLocLat(), breakPointsModel.getMapBreakLocLong());
                 mMap.addMarker(new MarkerOptions()
                         .position(markers)
@@ -288,7 +356,7 @@ public class TrackBreakLocDisplayInMapsActivity extends FragmentActivity impleme
 
 
                 // below line is use to move our camera to the specific location.
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers, 12.0f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastMarker, 12.0f));
                 // below line is use to zoom our camera on map.
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
 

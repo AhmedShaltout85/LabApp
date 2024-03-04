@@ -23,7 +23,7 @@ public class LoginUsingJdbc {
             connection = ConnectionHelper.getConnection();
 
             if (connection == null) {
-                CustomToast.customToast(context, "عفو لايمكن الأتصال بقاعدة البيانات");
+                CustomToast.customToast(context, "الخادم غير متصل(offline)");
 
             } else {
 

@@ -40,6 +40,7 @@ import com.ao8r.labapp.repository.GetLabAndSectorNameForBrokenPoint;
 import com.ao8r.labapp.repository.GetMaxSampleCodeForBrokenPoint;
 
 import com.ao8r.labapp.repository.InsertLocationsToTrackBreakTB;
+import com.ao8r.labapp.services.InternetConnection;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -230,13 +231,14 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                     ReferenceData.sampleBrokenY = locationLong;
                     System.out.println(locationLat);
                     System.out.println(locationLong);
-                    try {
-                        InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
-                    }catch (Exception e){
-//                        CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
-                        CustomToast.customToast(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
-
-                    }
+                    //TODO: change for test purpose 17-02-2024
+//                    try {
+//                        InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
+//                    }catch (Exception e){
+////                        CustomLoader.customLoader(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+//                        CustomToast.customToast(getApplicationContext(), "الخادم فى وضع عدم الاتصال");
+//
+//                    }
 
                     //loop for track location
 //                    Timer timer = new Timer();
@@ -276,6 +278,16 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
                             getLocation();
                             ReferenceData.sampleBrokenX = locationLat;
                             ReferenceData.sampleBrokenY = locationLong;
+
+                            if (InternetConnection.checkConnection(getApplicationContext())) {
+                                // Its Available...
+                                CustomToast.customToast(getApplicationContext(), "متصل بالانترنت");
+                            } else {
+                                // Not Available...
+                                CustomToast.customToast(getApplicationContext(), "فضلا تحقق من الاتصال بالانترنت");
+
+                            }
+
                             try {
 
                                 InsertLocationsToTrackBreakTB.insertLocationsToTrackBreakTB(getApplicationContext());
