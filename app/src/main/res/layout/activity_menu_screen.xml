@@ -132,35 +132,35 @@
                 />
 
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/idFab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/towButton"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:gravity="end"
-            android:orientation="horizontal">
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/trackLocsFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="end"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:contentDescription="@string/tracing_locations_display"
-                android:paddingTop="10dp"
-                android:src="@drawable/edit_location"
-                app:fabSize="normal"
-                app:elevation="6dp"
-                app:backgroundTint="@color/colorPrimaryDark"
-                app:pressedTranslationZ="12dp" />
+<!--        <LinearLayout-->
+<!--            android:id="@+id/idFab"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/towButton"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:gravity="end"-->
+<!--            android:orientation="horizontal">-->
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/trackLocsFab"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:contentDescription="@string/tracing_locations_display"-->
+<!--                android:paddingTop="10dp"-->
+<!--                android:src="@drawable/edit_location"-->
+<!--                app:fabSize="normal"-->
+<!--                app:elevation="6dp"-->
+<!--                app:backgroundTint="@color/colorPrimaryDark"-->
+<!--                app:pressedTranslationZ="12dp" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
     </RelativeLayout>
 

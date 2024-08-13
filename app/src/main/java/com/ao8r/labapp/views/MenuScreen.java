@@ -58,7 +58,8 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
     Runnable runnableCode;
     Timer timer = new Timer();
     boolean isActive;
-    private FloatingActionButton trackingLocationFab;
+    //TODO:stop tracking location fab declaration (13-08-2024)
+//    private FloatingActionButton trackingLocationFab; //stop tracking location fab
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,15 +85,16 @@ public class MenuScreen extends AppCompatActivity implements OnClickListener, Lo
         addBrokenPoint = findViewById(id.addBrokenPointButton);
         addOnSiteTests = findViewById(id.addOnSiteTestButton);
 
+        //TODO:stop tracking location fab action (13-08-2024)
         // declare fab
-        trackingLocationFab = findViewById(R.id.trackLocsFab);
-        trackingLocationFab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),TrackBreakLocDisplayInMapsActivity.class );
-                startActivity(intent);
-            }
-        });
+//        trackingLocationFab = findViewById(R.id.trackLocsFab);
+//        trackingLocationFab.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),TrackBreakLocDisplayInMapsActivity.class );
+//                startActivity(intent);
+//            }
+//        });
 
         //Activate long press in Break Button
 
