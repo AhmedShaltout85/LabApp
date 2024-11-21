@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">AlexWaterLabsApp</string>
+    <string name="app_name">AWLabsApp</string>
     <string name="company_name">شركة مياه الشرب بالأسكندرية</string>
     <string name="sector_com_name">قطاع التكنولوجيا والخدمات الرقمية</string>
     <string name="depart_name">إدارة البرمجيات وصيانتها</string>
-    <string name="splash_title">تطبيق المعامل v1</string>
+    <string name="splash_title">تطبيق المعامل v7</string>
     <string name="login_user">Login</string>
-    <string name="enter_your_name">Enter Username</string>
-    <string name="enter_your_password">Enter Password</string>
+    <string name="enter_your_name">اسم المستخدم</string>
+    <string name="enter_your_password">كلمة المرور</string>
     <string name="open_qr_reader">إضافة عينة يومية </string>
     <string name="save_sample_details">حفظ العينه</string>
     <string name="save_src_sample">نقطة سحب جديدة</string>
@@ -36,8 +36,8 @@
     <string name="display_true_location">مكان العينه على الخريطة</string>
     <string name="display_gis">تحميل المسار</string>
     <string name="display_full_path_in_map">تحميل المسار على الخريطة</string>
-    <string name="add_ip_address">add Ip address</string>
-    <string name="please_enter_ip_address">Please Enter IP Address</string>
+    <string name="add_ip_address">Add Ip Address</string>
+    <string name="please_enter_ip_address">41.33.226.211</string>
     <string name="nav_to_broken">إضافة بيانات الكسر</string>
     <string name="refresh_locs_track">تحديث ال Track</string>
     <string name="map_api_key">AIzaSyD8pcx661wef6r3hyEJnfqoCVhYhFJFs9k</string>

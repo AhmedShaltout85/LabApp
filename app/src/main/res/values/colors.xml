@@ -5,5 +5,5 @@
     <color name="colorAccent">#9FD7ED</color>
     <color name="buttons">#03A9F4</color>
     <color name="text">#064BD6</color>
-
+    <color name="whiteColor">#fff</color>
 </resources>
